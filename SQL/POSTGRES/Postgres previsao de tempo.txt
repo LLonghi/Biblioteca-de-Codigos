@@ -1,0 +1,14 @@
+select (processados)/(total/100) as porcento,* 
+from(select a+b as Processados,
+ Total,
+  Total-(a+b) as Faltando,
+  (select current_time- TO_TIMESTAMP('11:23:00', 'HH24:MI:SS')::TIME) as Tempo_Utilizado,     
+   TO_CHAR((((tempocada*Total)/(a+b))|| ' second')::interval, 'HH24:MI:SS') as Previsao
+  from(
+  select count(*) as a,
+  (select count(*)*2 as b from c9999.digita where ctadeb != '' and ctacre != ''),
+  (select count(*) from gencontabil."VD_Lanc") as Total,
+  (select ((extract(hour from timer)*60*60 )+  (extract(minute from timer)*60 )+ (extract(second from timer))) as TempoCada 
+  from (select current_time - TO_TIMESTAMP('11:23:00', 'HH24:MI:SS')::TIME as timer)x)
+   from c9999.multiplas)y)k;
+

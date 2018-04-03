@@ -1,0 +1,2 @@
+sqlExec(lnConn, QUERY)
+sqlExec(lnConn, QUERY, 'crsDestino')

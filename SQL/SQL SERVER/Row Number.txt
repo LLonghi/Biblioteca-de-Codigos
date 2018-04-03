@@ -1,0 +1,1 @@
+ROW_NUMBER() over (order by 'campo')

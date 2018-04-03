@@ -1,0 +1,9 @@
+http://fox.wikis.com/wc.dll?Wiki~VFPCommandSQLStringConnect
+
+Local lcstr, lnConnection
+lcstr = "Driver={&ldbdriver};Server=&ldbserver;UID=&ldbuid;PWD=&ldbpwd;Database=&ldbname;Port=&ldbport;Option=3;"
+
+Store Sqlstringconnect(lcstr) To lnConn
+
+SQLSetprop(lnConn,'DispWarnings',.T.)
+*SQLSetprop(lnConn,'AutoIncError',.T.)

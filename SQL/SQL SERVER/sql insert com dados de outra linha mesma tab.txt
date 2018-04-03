@@ -1,0 +1,14 @@
+delete from cadnot where CODIGO = '02'
+/* é delete ou select? kkkk*/
+/* joga os dados em uma tabela temporaria */
+SELECT * INTO #TempTable
+FROM cadnot where CODIGO = '01'
+/* remove a coluna desnecessaria */
+ALTER TABLE #TempTable
+DROP COLUMN CODIGO
+/* pegar os resultados e deleta tab temporaria */
+insert into cadnot
+SELECT '02' as 'CODIGO',* FROM #TempTable
+DROP TABLE #TempTable
+
+select * from cadnot
