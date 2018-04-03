@@ -1,0 +1,26 @@
+ class colorTrans
+    {
+
+        public static Color transform(int t, Color color1, Color color2)
+        {
+            Color tmp;
+
+            int r1 = color1.R, b1 = color1.B, g1 = color1.G;
+            if (t == 5)
+            {
+                tmp = color1;
+            }
+            else
+            {
+                int r = color1.R.CompareTo(color2.R);
+                int g = color1.G.CompareTo(color2.G);
+                int b = color1.B.CompareTo(color2.B);
+                r1 = (int)(((float)t / 100) * (float)(r * -1) + (float)r1);
+                b1 = (int)(((float)t / 100) * (float)(b * -1) + (float)b1);
+                g1 = (int)(((float)t / 100) * (float)(g * -1) + (float)g1);
+                tmp = (Color.FromArgb(r1, g1, b1));
+            }
+
+            return tmp;
+        }
+    }

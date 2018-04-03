@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Windows.Forms;
+
+namespace ButtonDropDownTest
+{
+    public partial class Form1 : Form
+    {
+        private ContextMenuStrip _contextMenuAutoFill;
+
+        public Form1()
+        {
+            InitializeComponent();
+            CreateContextMenuStrip();
+        }
+
+        private void CreateContextMenuStrip()
+        {
+            _contextMenuAutoFill = new ContextMenuStrip();
+            _contextMenuAutoFill.Items.Add("Dropdown item 1");
+            _contextMenuAutoFill.Items.Add("Dropdown item 2");
+            _contextMenuAutoFill.Items.Add("Dropdown item 3");
+            _contextMenuAutoFill.Items.Add("Dropdown item 4");
+
+            foreach (ToolStripMenuItem mItem in _contextMenuAutoFill.Items)
+                mItem.Click += 
+                new System.EventHandler(this.AutoFillToolStripMenuItem_Click);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.ContextMenuStrip = _contextMenuAutoFill;
+            button1.ContextMenuStrip.Show
+		(button1, new System.Drawing.Point(0, button1.Height));
+        }
+
+        private void AutoFillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string m = ((ToolStripMenuItem)sender).Text;
+            MessageBox.Show("You have clicked '" + m + "'");
+        }
+    }
+}

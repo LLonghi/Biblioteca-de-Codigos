@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="NOTAS.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.5.2" />
+    </startup>
+    <userSettings>
+        <NOTAS.Properties.Settings>
+            <setting name="EMP" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="TEL" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="MAIL" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="END" serializeAs="String">
+                <value />
+            </setting>
+            <setting name="IMG" serializeAs="String">
+                <value />
+            </setting>
+        </NOTAS.Properties.Settings>
+    </userSettings>
+</configuration>

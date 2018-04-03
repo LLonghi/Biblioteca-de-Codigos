@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>round</Title>
+			<Shortcut>round</Shortcut>
+			<Description>roundRect</Description>
+			<Author>Leonardo Longhi</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+				</Literal>
+				<Literal>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[[DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+           (
+               int nLeftRect, // x-coordinate of upper-left corner
+               int nTopRect, // y-coordinate of upper-left corner
+               int nRightRect, // x-coordinate of lower-right corner
+               int nBottomRect, // y-coordinate of lower-right corner
+               int nWidthEllipse, // height of ellipse
+               int nHeightEllipse // width of ellipse
+           );
+        //Panel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Panel.Width, Panel.Height, 15, 15));
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

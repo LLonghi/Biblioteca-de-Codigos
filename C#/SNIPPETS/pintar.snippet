@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pintar</Title>
+			<Shortcut>pintar</Shortcut>
+			<Description>Code snippet para metodo Paint de datagridviews</Description>
+			<Author>Leonardo Longhi</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+				<SnippetType>SurroundsWith</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>			
+			<Code Language="csharp"><![CDATA[			
+			/// <summary>
+        /// Pintar DataGridView
+        /// </summary>
+        /// <param name="xDt">DataGridView</param>
+        /// <param name="Fundo">Cor de Fundo, Padrão quando null: 'Color.Gainsboro'.</param>
+        /// <param name="Secundaria">Cor das Linhas Secundarias, Padrão quando null: 'Color.WhiteSmoke'.</param>
+        private void pintar(DataGridView xDt, Color? Fundo = null, Color? Secundaria = null)
+        {
+            Fundo = Fundo ?? Color.Gainsboro;
+            Secundaria = Secundaria ?? Color.WhiteSmoke;
+
+            try
+            {
+                //Preferivel Remover este trecho para outro metodo 
+                xDt.CellBorderStyle = DataGridViewCellBorderStyle.None;
+                xDt.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+                xDt.RowHeadersVisible = false;
+                xDt.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.ControlDarkDark;
+                xDt.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+                xDt.RowsDefaultCellStyle.SelectionBackColor = Color.Teal;
+                xDt.EnableHeadersVisualStyles = false;
+                xDt.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+                //Impede Sort
+                //foreach (DataGridViewColumn column in xDt.Columns)
+                //    column.SortMode = DataGridViewColumnSortMode.NotSortable;
+
+                //Cor de Fundo
+                xDt.RowsDefaultCellStyle.BackColor = (Color)Fundo;
+                //Cor das Linhas Secundarias
+                for (int i = 0; i < xDt.Rows.Count; i++)
+                    if (i % 2 != 0)
+                        xDt.Rows[i].DefaultCellStyle.BackColor = (Color)Secundaria;                
+            }
+            catch
+            {
+                MessageBox.Show("Não foi possivel colorir o Grid\r\nEntre em contato com o suporte", "Atenção");
+            }
+        }
+]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
