@@ -1,0 +1,6 @@
+string query = XSqlcommand.CommandText;
+
+                        foreach (SqlParameter p in XSqlcommand.Parameters)
+                        {
+                            query = query.Replace(p.ParameterName, p.Value.ToString());
+                        }

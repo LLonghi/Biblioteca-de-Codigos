@@ -1,0 +1,41 @@
+private void pintar_grid()
+        {
+
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                column.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+
+            int i = 0;
+            while (i < dataGridView1.Rows.Count)
+            {
+                if (i % 2 == 0)
+                    try
+                    {
+                        int a = 0;
+                        while (a < dataGridView1.Columns.Count)
+                        {
+                            dataGridView1.Rows[i].Cells[a].Style.BackColor = Color.Gainsboro;
+
+                            a++;
+                        }
+                    }
+
+                    catch { }
+                else
+                    try
+                    {
+                        int a = 0;
+                        while (a < dataGridView1.Columns.Count)
+                        {
+                            dataGridView1.Rows[i].Cells[a].Style.BackColor = Color.WhiteSmoke;
+
+                            a++;
+                        }
+                    }
+
+                    catch { }
+
+                i++;
+            }
+        }

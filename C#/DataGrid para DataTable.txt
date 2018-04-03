@@ -1,0 +1,1 @@
+ Selecionados = (DataTable)dataGridView1.DataSource;

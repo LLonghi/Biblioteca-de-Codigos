@@ -1,0 +1,5 @@
+lbVersao.Text = "Versão: " + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+            {
+                lbVersao.Text = "Versão: " + System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+            }

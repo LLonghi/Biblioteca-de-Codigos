@@ -1,0 +1,14 @@
+private string getNextCLI()
+        {
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(connectionString);
+                sqlConn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("select max(cl_codigo) from [FIN" + codemp + "].[dbo].[cadcli] ", sqlConn);//
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                sqlConn.Close();
+                return (Convert.ToInt32(dt.Rows[0][0].ToString()) + 1).ToString().PadLeft(6, '0').ToString();
+            }
+            catch { return "000001"; }
+        }

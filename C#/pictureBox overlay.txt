@@ -1,0 +1,3 @@
+//pb_cima parent = pb_baixpo
+pictureBox2.BackColor = Color.Transparent;
+pictureBox2.Parent= pictureBox1;

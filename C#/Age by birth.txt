@@ -1,0 +1,10 @@
+public int getIDADE(DateTime nasc)
+        {
+            DateTime today = DateTime.Today;
+
+            if ((nasc.Month < today.Month)||(nasc.Month == today.Month && nasc.Day <= today.Day))
+                return today.Year - nasc.Year;
+            else
+                return today.Year - nasc.Year - 1;
+
+        }

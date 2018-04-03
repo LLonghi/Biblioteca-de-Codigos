@@ -1,0 +1,53 @@
+private string tpPessoa(string docto)
+        {
+            if (IsCnpj(docto) == true)
+                return "Juridica";
+            else if (IsCpf(docto) == true)
+                return "Fisica";
+            else
+            return "";
+        }
+
+        private string formataDoc(string docto)
+        {
+            string cpfcnpj = docto.Replace(" ", "").Replace(",", "").Replace(".", "").Replace("/", "").Replace("-", "");
+            string antcpf = docto;
+            if (cpfcnpj.Length < 11)
+                cpfcnpj = cpfcnpj.PadLeft(11, '0');
+            try
+            {
+                cpfcnpj = Convert.ToUInt64(cpfcnpj).ToString(@"000\.000\.000\-00");
+                if (IsCpf(cpfcnpj) == false)
+                {
+                    cpfcnpj = docto.Replace(" ", "").Replace(",", "").Replace(".", "").Replace("/", "").Replace("-", "");
+                    if (cpfcnpj.Length < 14)
+                        cpfcnpj = cpfcnpj.PadLeft(14, '0');
+                    cpfcnpj = Convert.ToUInt64(cpfcnpj).ToString(@"00\.000\.000\/0000\-00");
+                    if (IsCnpj(cpfcnpj) == false)
+                        cpfcnpj = "";
+                }
+            }
+            catch
+            {
+                try
+                {
+                    cpfcnpj = docto.Replace(" ", "").Replace(",", "").Replace(".", "").Replace("/", "").Replace("-", "");
+                    if (cpfcnpj.Length < 14)
+                        cpfcnpj = cpfcnpj.PadLeft(14, '0');
+                    cpfcnpj = Convert.ToUInt64(cpfcnpj).ToString(@"00\.000\.000\/0000\-00");
+                    if (IsCnpj(cpfcnpj) == false)
+                        cpfcnpj = "";
+                }
+                catch(Exception ex)
+                {
+                    cpfcnpj = "";
+                    Console.WriteLine("Erro ao converter docto:"+antcpf+"\r\n"+ex.Message);
+                }
+                
+
+               
+            }
+            if(cpfcnpj=="")
+                Console.WriteLine("Docto Não é um CNPJ ou CPF Valido");
+            return cpfcnpj;
+        }

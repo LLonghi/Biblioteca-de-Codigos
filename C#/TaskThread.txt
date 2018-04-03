@@ -1,0 +1,2 @@
+//Chamar um metodo como Action atraves do lambda para torna-lo uma thread
+await Task.Run(() => metodo);

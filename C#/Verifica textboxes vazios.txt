@@ -1,0 +1,11 @@
+ private bool textBoxVazias()
+        {
+            foreach (Control c in this.Controls)
+                if (c is TextBox)
+                {
+                    TextBox textBox = c as TextBox;
+                    if (string.IsNullOrWhiteSpace(textBox.Text))
+                        return true;
+                }
+            return false;
+        }

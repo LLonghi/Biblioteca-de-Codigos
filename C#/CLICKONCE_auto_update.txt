@@ -1,0 +1,78 @@
+private void InstallUpdateSyncWithInfo()
+        {
+            UpdateCheckInfo info = null;
+
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+  
+                ApplicationDeployment ad = ApplicationDeployment.CurrentDeployment;
+
+                try
+                {
+                    info = ad.CheckForDetailedUpdate();
+
+                }
+                catch (DeploymentDownloadException dde)
+                {
+                    try
+                    {
+                        add_comment("Não é possivel realizar o download da atualização no momento, Por favor, cheque sua conexão com a internet. Erro:\r\nThe new version of the application cannot be downloaded at this time. \n\nPlease check your network connection, or try again later. Error: \r\n" + dde.Message);
+                }
+                catch { }
+                return;
+                }
+                catch (InvalidDeploymentException ide)
+                {
+                try
+                {
+                    add_comment("Não foi possivel buscar novas versões do aplicativo. O Clickonce foi corrompido, por favor, reinstale a aplicação e tente novamente. Erro:\r\nCannot check for a new version of the application. The ClickOnce deployment is corrupt. Please redeploy the application and try again. Error: \r\n" + ide.Message);
+                }
+                catch { }
+                return;
+                }
+                catch (InvalidOperationException ioe)
+                {
+             try
+                    {
+                    add_comment("Esta Aplicação não pode ser atualizada, parece que o problema não esta associado ao aplicativo ClickOnce Erro:\r\nThis application cannot be updated. It is likely not a ClickOnce application. Error: \r\n" + ioe.Message);
+                }
+                catch { }
+                return;
+                }
+
+                if (info.UpdateAvailable)
+                {
+                    Boolean doUpdate = true;
+                    try
+                    {
+                        // Display a message that the app MUST reboot. Display the minimum required version.
+                        add_comment("Atualização Disponivel | Update Available\r\nA Aplicação detectou uma atualização disponivel da versão atual para a versão" + info.MinimumRequiredVersion.ToString() +
+                                ". O Aplicativo sera atualizado e em seguida reiniciado.\r\n" +
+                                "This application has detected a mandatory update from your current " +
+                                "version to version " + info.MinimumRequiredVersion.ToString() +
+                                ". The application will now install the update and restart.");
+                    }
+                    catch { }
+
+                    if (doUpdate)
+                    {
+                        try
+                        {
+                            ad.Update();
+                            try
+                            {
+                                add_comment("O Aplicativo foi atualizado com sucesso e ira reiniciar.\r\nThe application has been upgraded, and will now restart.");
+                            }
+                            catch { }
+                                Application.Restart();
+                        }
+                        catch (DeploymentDownloadException dde)
+                        {
+                            add_comment("Não foi possivel Instalar a atualização, por favor, verifique sua conezão com a internet. Erro:\r\nCannot install the latest version of the application. \n\nPlease check your network connection, or try again later. Error: \r\n" + dde);
+                            
+                            return;
+                        }
+                    }
+                }
+            }
+        }

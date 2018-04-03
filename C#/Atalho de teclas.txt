@@ -1,0 +1,19 @@
+  switch (e.KeyCode)
+            {
+                case Keys.F5:
+                    pictureBox8_Click(sender,e);
+                    break;
+                case Keys.F4:
+                    pictureBox7_Click(sender, e);
+                    break;
+                case Keys.F3:
+                    pictureBox6_Click(sender, e);
+                    break;
+                case Keys.F2:
+                    pictureBox5_Click(sender, e);
+                    break;
+                case Keys.F1:
+                    pictureBox3_Click(sender, e);
+                    break;
+
+            }

@@ -1,0 +1,2 @@
+System.IO.StreamWriter file = new System.IO.StreamWriter(@"\hereIam.txt");
+file.WriteLine(sb.ToString()); // "sb" is the StringBuilder

@@ -1,0 +1,28 @@
+ private object buscaMunic(string MUNI, string EST)
+        {
+            //"select * from [FAT99999].[dbo].[municipios] where DESCRICAO like '"+"' and ESTADO = '"+"'"
+
+            string x = "";
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(connectionString);
+                sqlConn.Open();
+                SqlDataAdapter sda = new SqlDataAdapter("select CODIGO from [FIN" + codemp + "].[dbo].[municipios] where DESCRICAO like '%" + MUNI + "%' and ESTADO = '" + EST + "'", sqlConn);//
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+
+
+
+                if (dt.Rows.Count > 0)
+                    x = dt.Rows[0][0].ToString();
+                else
+                    x = "0000";
+
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                x = "0000"; LOG("Erro ao buscar Municipio" + ex.Message);
+            }
+            return x;
+        }

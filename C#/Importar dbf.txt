@@ -1,0 +1,13 @@
+ public DataTable x_dt ()       
+        {
+            OdbcConnection oConn = new OdbcConnection();
+            oConn.ConnectionString = @"Driver={Microsoft dBase Driver (*.dbf)};SourceType=DBF;SourceDB=c:\dados\;Exclusive=No;  _
+                                                         Collate=Machine;NULL=NO;DELETED=NO;BACKGROUNDFETCH=NO;";
+            oConn.Open();
+            OdbcCommand oCmd = oConn.CreateCommand();
+            oCmd.CommandText = @"SELECT * FROM c:\dados\arqDBF.dbf";
+            DataTable dt = new DataTable();
+            dt.Load(oCmd.ExecuteReader());
+            oConn.Close();
+            return dt;
+        }

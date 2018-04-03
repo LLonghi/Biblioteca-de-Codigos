@@ -1,0 +1,42 @@
+//Cria uma mensagem no canto inferior direito do sistema
+        /// <summary>
+        /// Função para Criar caixa de mensagem no sistema.
+        /// </summary> 
+        /// <param name="CAP">Texto do Cabeçalho da mensagem</param>
+        /// <param name="IMAGEM">Imagem utilizada na mensagem</param>
+        /// <param name="TXT">Texto do Corpo da mensagem</param>
+        /// <param name="Style">Estilo de aparição da caixa de mensagem</param>
+        /// <returns></returns>
+        public void cria_balao(string CAP, Image IMAGEM, string TXT, eAlertAnimation Style)
+        {
+            try
+            {
+                //exemplo
+                //cria_balao("HEADER", Integracao_bancaria.Properties.Resources._11_24, "COISAS ESCRITAS", eAlertAnimation.TopToBottom);
+                balloonTipFocus.Enabled = true;
+
+                Balloon b = new Balloon();
+
+                b.CreateControl();
+                //     DevComponents.DotNetBar.Balloon b = new DevComponents.DotNetBar.Balloon();
+                b.AlertAnimation = Style;
+                b.Style = eBallonStyle.Office2007Alert;
+                b.CaptionImage = IMAGEM;
+                b.CaptionText = CAP;
+                b.Text = TXT;
+                b.AutoResize();
+                //    b.Width = 170;
+                //   b.Height = 95;
+                b.AutoClose = true;
+                b.AutoCloseTimeOut = 5;
+                b.Owner = this;
+                b.AntiAlias = true;
+                b.AlertAnimationDuration = 200;
+                b.Anchor = (AnchorStyles.Bottom | AnchorStyles.Right);
+                b.DesktopLocation = new Point(SystemInformation.WorkingArea.Width - b.Width, SystemInformation.WorkingArea.Height - b.Height);
+                
+                b.Show();
+            }
+            catch { MessageBox.Show(TXT, CAP); }
+
+        }

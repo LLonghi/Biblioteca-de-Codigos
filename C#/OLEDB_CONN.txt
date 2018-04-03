@@ -1,0 +1,46 @@
+public string emp(string cnpj)
+        {
+            string cod = "";
+            DataTable YourResultSet = new DataTable();
+
+            //OleDbConnection yourConnectionHandler = new OleDbConnection("Provider=VFPOLEDB.1;" +
+            //"Data Source=Z:\\Folhawin\\empresa;");
+            OleDbConnection yourConnectionHandler = new OleDbConnection("Provider=VFPOLEDB.1;" +
+             "Data Source=S:\\Folhawin\\empresa;");
+            //\\eys18817\folhawin\efiscal\EFISCAL.EXE
+            try
+            {
+                yourConnectionHandler.Open();
+
+                string cnpjx = "";
+                if (yourConnectionHandler.State == ConnectionState.Open)
+                {
+                    try
+                    {
+                        cnpjx = cnpj.Substring(0, 2) + "." + cnpj.Substring(2, 3) + "." + cnpj.Substring(5, 3) + "/" + cnpj.Substring(8, 4) + "-" + cnpj.Substring(12, 2);// - 03.213.075/0001-49
+                    }
+                    catch { addLogx("Não foi possivel formatar o cnpj"); }
+
+                    OleDbDataAdapter DA = new OleDbDataAdapter();
+                    string mySQL = "select Codigo from empresas.sql where cgc like '" + cnpjx + "'";  // blah blah...
+
+                    OleDbCommand MyQuery = new OleDbCommand(mySQL, yourConnectionHandler);
+
+                    DA.SelectCommand = MyQuery;
+
+                    DA.Fill(YourResultSet);
+
+                    yourConnectionHandler.Close();
+
+                    cod = YourResultSet.Rows[0]["Codigo"].ToString();
+                }
+            }
+            catch
+            {
+                addLogx("Não foi possivel encontrar a empresa CNPJ(" + cnpj + ")");
+            }
+            if (cod == "") { cod = "9999"; }
+            cod = "e" + cod;
+            return cod;
+
+        }

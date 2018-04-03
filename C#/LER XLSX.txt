@@ -1,0 +1,33 @@
+public bool ler_arquivo(string path)
+        {
+            try
+            {
+                using (ExcelPackage xlPackage = new ExcelPackage(new FileInfo(path)))
+                {
+                    var myWorksheet = xlPackage.Workbook.Worksheets.First(); //select sheet here
+                    var totalRows = myWorksheet.Dimension.End.Row;
+                    var totalColumns = myWorksheet.Dimension.End.Column;
+                    int rn = 0;
+
+                    while (dataGridView1.ColumnCount < totalColumns)
+                        dataGridView1.Columns.Add(dataGridView1.ColumnCount.ToString(), dataGridView1.ColumnCount.ToString());
+
+
+                    var sb = new StringBuilder(); //this is your your data
+                    for (int rowNum = 1; rowNum < totalRows; rowNum++) //selet starting row here
+                    {
+                        var row = myWorksheet.Cells[rowNum, 1, rowNum, totalColumns].Select(c => c.Value == null ? string.Empty : c.Value.ToString());
+                        sb.AppendLine(string.Join(",", row));
+                        dataGridView1.Rows.Add(row.ToArray());
+                    }
+                    pintar_grid();
+                    // dtgDados.DataSource = sb;
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\r\n" + ex.StackTrace);
+                return false;
+            }
+        }

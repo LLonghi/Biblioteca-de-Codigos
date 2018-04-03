@@ -1,0 +1,10 @@
+  if (xbs.Count() == 14)
+            {
+                xbs = Convert.ToUInt64(xbs).ToString(@"00\.000\.000\/0000\-00");
+                pessoa = "Juridica";
+            }
+            else if (xbs.Count() == 11)
+            {
+                xbs = Convert.ToUInt64(xbs).ToString(@"000\.000\.000\-00");
+                pessoa = "Fisica";
+            }

@@ -1,0 +1,1 @@
+var Arquivos= Directory.GetFiles(@"caminho_path", "*.sql", SearchOption.AllDirectories);

@@ -1,0 +1,4 @@
+/// Função para Descrever um Objeto.
+        /// </summary> 
+        /// <param name="Parametro">Descrição do parametro.</param>
+        /// <returns></returns>

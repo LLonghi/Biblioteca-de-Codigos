@@ -1,0 +1,51 @@
+#region Lelo
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+
+        public void text_botoes()
+        {
+		//botao 1 flat botao 2 3d	
+            #region TEXT1
+            var btn1 = new Button();
+            btn1.Size = new Size(20, 18);
+            btn1.Location = new Point((txtIni.ClientSize.Width) - btn1.Width, +1);
+            btn1.Cursor = Cursors.Default;
+            btn1.Image = Properties.Resources.search_80px_24;
+            btn1.ImageAlign = ContentAlignment.MiddleCenter;
+            btn1.TabStop = false;
+            btn1.FlatStyle = FlatStyle.Flat;
+            btn1.FlatAppearance.BorderSize = 0;
+            txtIni.Controls.Add(btn1);
+            // Send EM_SETMARGINS to prevent text from disappearing underneath the button
+            SendMessage(txtIni.Handle, 0xd3, (IntPtr)2, (IntPtr)(btn1.Width << 16));
+            #endregion
+
+            #region TEXT2
+            var btn2 = new Button();
+            btn2.Size = new Size(22, txtFim.ClientSize.Height + 6);
+            btn2.Location = new Point((txtFim.ClientSize.Width + 3) - btn2.Width, -3);
+            btn2.Cursor = Cursors.Default;
+            btn2.Image = Properties.Resources.search_80px_24;
+            btn2.ImageAlign = ContentAlignment.MiddleCenter;
+            txtFim.Controls.Add(btn2);
+            // Send EM_SETMARGINS to prevent text from disappearing underneath the button
+            SendMessage(txtFim.Handle, 0xd3, (IntPtr)2, (IntPtr)(btn2.Width << 16));
+            #endregion
+
+           
+            btn1.Click += token_Click;
+            btn2.Click += token2_Click;
+        }
+
+        #region CLICKS BTNS TOKEN
+        private void token_Click(object sender, EventArgs e)
+        {
+           // NOTA();
+        }
+        private void token2_Click(object sender, EventArgs e)
+        {
+            //CLIENTE();
+        }
+        #endregion
+
+        #endregion

@@ -1,0 +1,11 @@
+public static string FormataCep(string cep)
+{
+    try
+    {
+        return Convert.ToUInt64(cep).ToString(@"00000\-000");
+    }
+    catch
+    {
+        return "";
+    }
+}
